@@ -1,0 +1,1316 @@
+{
+  "name": "Auto Progress Report Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Student Admission Form",
+        "formDescription": "This for takes students complete detail at time of admission",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "=Student Name",
+              "placeholder": "Enter Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Class",
+              "placeholder": "Enter Class",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "DOB",
+              "fieldType": "date",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Father Name",
+              "placeholder": "Enter Father Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "placeholder": "Enter Parent Email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Phone",
+              "fieldType": "number",
+              "placeholder": "Enter Grardian Phone",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Student ID",
+              "placeholder": "Enter Student ID"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -3264,
+        -272
+      ],
+      "id": "3eb392e6-8660-45f5-a233-d6e16907a7a6",
+      "name": "On form submission",
+      "webhookId": "55c26443-941e-4491-b74e-78fde827fb99"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko",
+          "mode": "list",
+          "cachedResultName": "Students Record",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Students",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Student ID": "={{ $json['Student ID'] }}",
+            "Name": "={{ $json['Student Name'] }}",
+            "Calss": "={{ $json.Class }}",
+            "DOG": "={{ $json.DOB }}",
+            "Father Name": "={{ $json['Father Name'] }}",
+            "Parent Email": "={{ $json.Email }}",
+            "Phone": "={{ $json.Phone }}",
+            "Admission Date": "={{ new Date().toLocaleDateString('en-GB') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Student ID",
+              "displayName": "Student ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Calss",
+              "displayName": "Calss",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DOG",
+              "displayName": "DOG",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Father Name",
+              "displayName": "Father Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Parent Email",
+              "displayName": "Parent Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Admission Date",
+              "displayName": "Admission Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -3040,
+        -272
+      ],
+      "id": "afb4f402-23e6-4fef-a486-a3a374d65408",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dOxJqq7rQ04XGB3o",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Student Monthly Report",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Student ID",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "English ",
+              "fieldType": "number",
+              "placeholder": "Enter English Marks",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Urdu",
+              "fieldType": "number",
+              "placeholder": "Enter Urdu Marks",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Math",
+              "fieldType": "number",
+              "placeholder": "Enter Math Marks",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Computer",
+              "fieldType": "number",
+              "placeholder": "Enter Computer Marks",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Practical",
+              "fieldType": "number",
+              "placeholder": "Enter Practical Marks",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -3824,
+        528
+      ],
+      "id": "e06fe615-a946-4ef3-bed8-464e24b049a0",
+      "name": "On form submission1",
+      "webhookId": "6f99bc05-56d9-4298-934f-276c5913303c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e67166ee-0fef-4939-9f67-91f9f83b2414",
+              "name": "=Obtain Marks",
+              "value": "={{ $json['English '] + $json['Urdu'] + $json['Math'] + $json['Computer'] + $json['Practical']}} ",
+              "type": "number"
+            },
+            {
+              "id": "4746f160-c861-4112-b034-db38ead0a178",
+              "name": "Total Marks",
+              "value": 500,
+              "type": "number"
+            },
+            {
+              "id": "a83af347-8164-41ea-aa6f-bf2a44c590ca",
+              "name": "Percentage",
+              "value": "= {{ \n((Number($json['English ']) + Number($json['Urdu']) + Number($json['Math']) + Number($json['Computer']) + Number($json['Practical'])) / 500 * 100).toFixed(2)\n}}\n ",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -3520,
+        528
+      ],
+      "id": "b53b96cc-5f42-4972-ad0b-fb50b904b693",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9e5a78df-709e-45b0-b33b-f4a977cdd64c",
+              "name": "Grade",
+              "value": "={{\n  Number($json.Percentage) >= 90 ? \"A+\" :\n  Number($json.Percentage) >= 80 ? \"A\" :\n  Number($json.Percentage) >= 70 ? \"B\" :\n  Number($json.Percentage) >= 60 ? \"C\" :\n Number($json.Percentage) >= 50 ? \"D\" :\n \n Number($json.Percentage) >= 33 ? \"E\" :\n  \"F\"\n}}\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -3200,
+        528
+      ],
+      "id": "b2b78e8e-7c1c-4ce4-b1c2-a8e12b0963c2",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Edit Fields').item.json.Percentage }}",
+                    "rightValue": 90,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gte"
+                    },
+                    "id": "37cb09f5-f49e-40fd-ace9-7b1541959e82"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "A+"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "df4f4780-ab2e-4551-9b3b-6b4d6f12759a",
+                    "leftValue": "={{ $('Edit Fields').item.json.Percentage }}",
+                    "rightValue": 80,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "A"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "706f0d12-53c6-4c65-8b35-162b1520bc55",
+                    "leftValue": "={{ $('Edit Fields').item.json.Percentage }}",
+                    "rightValue": 70,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "B"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "20806c58-89f4-4dd9-8dc7-576ecdb4dcc9",
+                    "leftValue": "={{ $('Edit Fields').item.json.Percentage }}",
+                    "rightValue": 60,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "C"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "44ee1fcb-164b-49fc-b7ee-3e29088c68e8",
+                    "leftValue": "={{ $('Edit Fields').item.json.Percentage }}",
+                    "rightValue": 50,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "D"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "43bf8e77-92cd-44e5-a850-4c80d342d2ea",
+                    "leftValue": "={{ $('Edit Fields').item.json.Percentage }}",
+                    "rightValue": 33,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "E"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "084cb4ec-0157-4f59-8b19-80d2ff4c0b66",
+                    "leftValue": "={{ $('Edit Fields').item.json.Percentage }}",
+                    "rightValue": 32,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "F"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -2976,
+        448
+      ],
+      "id": "b2226972-505f-497d-8e9f-837cf1acc3dd",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5b0e95bc-1126-49d3-a8fc-6e1eb3b0c0d8",
+              "name": "Teacher Remarks",
+              "value": "Outstanding performance! Keep up the excellent work.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2368,
+        -48
+      ],
+      "id": "d110379a-540c-46e1-8a0f-16798356a2bd",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5b0e95bc-1126-49d3-a8fc-6e1eb3b0c0d8",
+              "name": "Teacher Remarks",
+              "value": "Excellent work! You’re doing very well.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2368,
+        144
+      ],
+      "id": "1bd5d070-ab1a-4ec1-8559-d4c4d1c3e672",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5b0e95bc-1126-49d3-a8fc-6e1eb3b0c0d8",
+              "name": "Teacher Remarks",
+              "value": "Good job! Keep improving and aiming higher.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2368,
+        336
+      ],
+      "id": "0d927360-43fb-40e3-8982-2163d105aaf2",
+      "name": "Edit Fields4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5b0e95bc-1126-49d3-a8fc-6e1eb3b0c0d8",
+              "name": "Teacher Remarks",
+              "value": "Needs improvement. Let’s work on weak areas together",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2368,
+        720
+      ],
+      "id": "035fa29c-05ae-4797-b69e-f6083de066b7",
+      "name": "Edit Fields5"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5b0e95bc-1126-49d3-a8fc-6e1eb3b0c0d8",
+              "name": "Teacher Remarks",
+              "value": "Fair performance. Focus a bit more to improve.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2368,
+        528
+      ],
+      "id": "c5631a5b-5eef-496d-9100-8d70263679f1",
+      "name": "Edit Fields6"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5b0e95bc-1126-49d3-a8fc-6e1eb3b0c0d8",
+              "name": "Teacher Remarks",
+              "value": "Below average. Extra practice is required.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2368,
+        912
+      ],
+      "id": "f0902103-61a8-4aa4-96e7-5de216282163",
+      "name": "Edit Fields7"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5b0e95bc-1126-49d3-a8fc-6e1eb3b0c0d8",
+              "name": "Teacher Remarks",
+              "value": "Poor performance. Strong effort and support needed.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2368,
+        1104
+      ],
+      "id": "1fc1883d-704a-4b09-a8ae-1e3857127851",
+      "name": "Edit Fields8"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko",
+          "mode": "list",
+          "cachedResultName": "Students Record",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Students",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Student ID": "={{ $json['Student ID'] }}",
+            "Name": "={{ $json.Name }}"
+          },
+          "matchingColumns": [
+            "Student ID"
+          ],
+          "schema": [
+            {
+              "id": "Student ID",
+              "displayName": "Student ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fatger Name",
+              "displayName": "Fatger Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "English",
+              "displayName": "English",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Urdu",
+              "displayName": "Urdu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Math",
+              "displayName": "Math",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Computer",
+              "displayName": "Computer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Practical",
+              "displayName": "Practical",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Percentage",
+              "displayName": "Percentage",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Total Marks",
+              "displayName": "Total Marks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Obtain Marks",
+              "displayName": "Obtain Marks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Grade",
+              "displayName": "Grade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Teacher Remarks",
+              "displayName": "Teacher Remarks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Grardian Email",
+              "displayName": "Grardian Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -960,
+        512
+      ],
+      "id": "8f356529-5b7f-4adb-9886-1b53d68db9e5",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dOxJqq7rQ04XGB3o",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get data from previous nodes\nconst studentName = $('Get Student Info').first().json.Name || \"Ahmed Khan\";\nconst studentClass = $('Get Student Info').first().json.Calss || \"Grade 10-A\";\nconst rollNumber = $('Get Student Info').first().json['Student ID']|| \"2024-001\";\nconst parentEmail = $('Get Student Info').first().json['Parent Email'] || \"parent@example.com\";\nconst schoolName = $input.item.json.schoolName || \"SkillAi Tech Park\";\nconst month = $input.item.json.month || \"November 2025\";\n\n// Marks data\nconst subject1 =  $('Save Students Marks').first().json.English|| 85;\nconst subject2 = $('Save Students Marks').first().json.Urdu || 92;\nconst subject3 = $('Save Students Marks').first().json.Math || 78;\nconst subject4 = $('Save Students Marks').first().json.Computer || 88;\nconst subject5 = $('Save Students Marks').first().json.Practical || 90;\n\n// Calculated values\nconst totalObtained = $('Save Students Marks').first().json['Obtain Marks'];\nconst maxMarks = 500;\nconst percentage = $('Save Students Marks').first().json.Percentage;\nconst grade = $('Save Students Marks').first().json.Grade || \"A\";\nconst teacherRemarks = $('Save Students Marks').first().json['Teacher Remarks'] || \"Ahmed has shown excellent performance this month. Keep up the good work!\";\n\n// Email-friendly HTML with inline CSS\nconst reportHTML = `\n<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;\">\n  <tr>\n    <td align=\"center\">\n      <table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #ffffff; border-radius: 10px; padding: 20px;\">\n        <!-- Header -->\n        <tr>\n          <td style=\"background-color:#ff6b6b; color:#ffffff; text-align:center; padding:30px; border-radius:10px 10px 0 0;\">\n            <h1 style=\"margin:0; font-size:28px;\">${schoolName}</h1>\n            <p style=\"margin:5px 0 0; font-size:18px;\">Monthly Student Progress Report</p>\n            <p style=\"margin:5px 0 0; font-size:16px;\">${month}</p>\n          </td>\n        </tr>\n        \n        <!-- Student Info -->\n        <tr>\n          <td style=\"padding:20px;\">\n            <table width=\"100%\" cellpadding=\"5\" cellspacing=\"0\" style=\"border-collapse:collapse;\">\n              <tr>\n                <td style=\"font-weight:bold; width:150px;\">Student Name:</td>\n                <td>${studentName}</td>\n              </tr>\n              <tr>\n                <td style=\"font-weight:bold;\">Class:</td>\n                <td>${studentClass}</td>\n              </tr>\n              <tr>\n                <td style=\"font-weight:bold;\">Roll Number:</td>\n                <td>${rollNumber}</td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n        <!-- Marks Table -->\n        <tr>\n          <td style=\"padding:20px;\">\n            <h2 style=\"font-size:20px; border-bottom:2px solid #ff6b6b; padding-bottom:5px;\">Subject-wise Performance</h2>\n            <table width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" style=\"border-collapse:collapse; margin-top:10px;\">\n              <tr style=\"background-color:#ff6b6b; color:#ffffff; text-align:center;\">\n                <th style=\"border-radius:5px 0 0 0;\">Subject</th>\n                <th>Marks Obtained</th>\n                <th style=\"border-radius:0 5px 0 0;\">Maximum Marks</th>\n              </tr>\n              <tr><td>Mathematics</td><td align=\"center\">${subject1}</td><td align=\"center\">100</td></tr>\n              <tr><td>English</td><td align=\"center\">${subject2}</td><td align=\"center\">100</td></tr>\n              <tr><td>Science</td><td align=\"center\">${subject3}</td><td align=\"center\">100</td></tr>\n              <tr><td>Social Studies</td><td align=\"center\">${subject4}</td><td align=\"center\">100</td></tr>\n              <tr><td>Urdu</td><td align=\"center\">${subject5}</td><td align=\"center\">100</td></tr>\n              <tr style=\"font-weight:bold; background-color:#ffeaa7;\">\n                <td>Total</td>\n                <td align=\"center\">${totalObtained}</td>\n                <td align=\"center\">${maxMarks}</td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n        <!-- Performance & Grade -->\n        <tr>\n          <td style=\"padding:20px;\">\n            <table width=\"100%\" cellpadding=\"10\" cellspacing=\"0\" style=\"border-collapse:collapse;\">\n              <tr>\n                <td style=\"background-color:#6c5ce7; color:#ffffff; text-align:center; border-radius:10px;\">\n                  <strong>Overall Percentage</strong><br>\n                  <span style=\"font-size:28px;\">${percentage}%</span>\n                </td>\n                <td style=\"background-color:#00b894; color:#ffffff; text-align:center; border-radius:10px;\">\n                  <strong>Grade</strong><br>\n                  <span style=\"font-size:28px;\">${grade}</span>\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n        <!-- Teacher Remarks -->\n        <tr>\n          <td style=\"padding:20px; background-color:#fd79a8; color:#ffffff; border-radius:10px;\">\n            <h3 style=\"margin-top:0;\">Teacher's Remarks</h3>\n            <p style=\"margin:0;\">${teacherRemarks}</p>\n          </td>\n        </tr>\n\n        <!-- Footer -->\n        <tr>\n          <td style=\"padding:20px; text-align:center; font-size:12px; color:#666666;\">\n            This is an automated report generated by the school management system.<br>\n            For any queries, please contact the class teacher or administration.\n          </td>\n        </tr>\n      </table>\n    </td>\n  </tr>\n</table>\n`;\n\n// Return the HTML report\nreturn {\n  json: {\n    reportHTML: reportHTML,\n    studentName: studentName,\n    parentEmail: parentEmail,\n    schoolName: schoolName,\n    percentage: percentage,\n    grade: grade\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -720,
+        512
+      ],
+      "id": "2860d6d1-813c-466e-97f0-2484893da008",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "sendTo": "zeshanabduljabbar@gmail.com",
+        "subject": "progress report",
+        "message": "={{ $json.reportHTML }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -528,
+        512
+      ],
+      "id": "5a646fb3-83fb-4970-aa5b-17def60bfd3a",
+      "name": "Send a message",
+      "webhookId": "6ed9fc6a-160c-4d95-9b34-9058989b0b29",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RYYGDygR4djoTOE8",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko",
+          "mode": "list",
+          "cachedResultName": "Students Record",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Students",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "=Student ID",
+              "lookupValue": "={{ $json[\"Student ID\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1200,
+        512
+      ],
+      "id": "e07ab484-8ed3-4d3f-b0d2-09a64b7f3833",
+      "name": "Get Student Info",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dOxJqq7rQ04XGB3o",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko",
+          "mode": "list",
+          "cachedResultName": "Students Record",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1441298913,
+          "mode": "list",
+          "cachedResultName": "November Report",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1smGoddlmymIB3Fym4blaFxiKujTx5kbdgK4DVnKfvko/edit#gid=1441298913"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Student ID": "={{ $('On form submission1').item.json['Student ID'] }}",
+            "English": "={{ $('On form submission1').item.json['English '] }}",
+            "Urdu": "={{ $('On form submission1').item.json.Urdu }}",
+            "Math": "={{ $('On form submission1').item.json.Math }}",
+            "Computer": "={{ $('On form submission1').item.json.Computer }}",
+            "Practical": "={{ $('On form submission1').item.json.Practical }}",
+            "Percentage": "={{ $('Edit Fields').item.json.Percentage }}",
+            "Total Marks": "={{ $('Edit Fields').item.json['Total Marks'] }}",
+            "Obtain Marks": "={{ $('Edit Fields').item.json['Obtain Marks'] }}",
+            "Grade": "={{ $('Edit Fields1').item.json.Grade }}",
+            "Teacher Remarks": "={{ $json['Teacher Remarks'] }}"
+          },
+          "matchingColumns": [
+            "Student ID"
+          ],
+          "schema": [
+            {
+              "id": "Student ID",
+              "displayName": "Student ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "English",
+              "displayName": "English",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Urdu",
+              "displayName": "Urdu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Math",
+              "displayName": "Math",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Computer",
+              "displayName": "Computer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Practical",
+              "displayName": "Practical",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Percentage",
+              "displayName": "Percentage",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Total Marks",
+              "displayName": "Total Marks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Obtain Marks",
+              "displayName": "Obtain Marks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Grade",
+              "displayName": "Grade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Teacher Remarks",
+              "displayName": "Teacher Remarks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1424,
+        512
+      ],
+      "id": "28208347-f1b8-44c1-90cb-2ca3d3952a0c",
+      "name": "Save Students Marks",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dOxJqq7rQ04XGB3o",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Save Students Marks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "Save Students Marks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Save Students Marks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields6": {
+      "main": [
+        [
+          {
+            "node": "Save Students Marks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields5": {
+      "main": [
+        [
+          {
+            "node": "Save Students Marks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields7": {
+      "main": [
+        [
+          {
+            "node": "Save Students Marks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields8": {
+      "main": [
+        [
+          {
+            "node": "Save Students Marks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Student Info": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Students Marks": {
+      "main": [
+        [
+          {
+            "node": "Get Student Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "c8fec26b-30f0-4d79-a583-8395026d6868",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a7d35ab996b52cf615a5bd788fd401b90f798a1f9d34eb1bebd3556362e9d750"
+  },
+  "id": "PURfzTsfQP7ndfyC",
+  "tags": []
+}
